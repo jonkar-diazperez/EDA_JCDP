@@ -49,3 +49,268 @@ def cargar_datos_ZBE_BIO():
     df_bio_bas_sum.to_csv("../data/48-Bizkaia/ZBE_bas.csv")
     
     return
+
+def graficos_ICA_ZBE_BIO():
+    plt.style.use('seaborn-v0_8')
+
+    df_bio_maz_sum = pd.read_csv("../data/48-Bizkaia/ZBE_maz.csv")
+    df_bio_mdh_sum = pd.read_csv("../data/48-Bizkaia/ZBE_mdh.csv")
+    df_bio_eur_sum = pd.read_csv("../data/48-Bizkaia/ZBE_eur.csv")
+    df_bio_um2_sum = pd.read_csv("../data/48-Bizkaia/ZBE_um2.csv")
+    df_bio_bas_sum = pd.read_csv("../data/48-Bizkaia/ZBE_bas.csv")
+    # GRAFICOS ICA MAZ
+    plt.figure()
+    fig, ax = plt.subplots()
+    ax.set(xlim=("2024-01-01","2025-06-01"), xticks=["2024-01-01", "2024-03-01","2024-06-01","2024-09-01","2025-01-01", "2025-03-01","2025-06-01"]);
+    plt.axvline(x="2024-06-15", color='r', linestyle='--', linewidth=2);
+
+    plt.figure()
+    ax.stackplot(df_bio_maz_sum["Date"],df_bio_maz_sum["CO (mg/m3)"], linewidth=0.7);
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_CO ICA.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] < "2024-06-15"], x = "CO (mg/m3)")  
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_CO ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] >= "2024-06-15"], x = "CO (mg/m3)")
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_CO ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_maz_sum["Date"],df_bio_maz_sum["NO2"], linewidth=1.5,colors='g')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_NO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] < "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_NO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] >= "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_NO2 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_maz_sum["Date"],df_bio_maz_sum["SO2"], linewidth=0.7,colors='y')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_SO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] < "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_SO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] >= "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_SO2 ICA_boxplot 2025.png", format="png")
+ 
+    plt.figure()
+    ax.stackplot(df_bio_maz_sum["Date"],df_bio_maz_sum["PM10"], linewidth=0.7,colors='m');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_PM10 ICA.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] < "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_PM10 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] >= "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_PM10 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_maz_sum["Date"],df_bio_maz_sum["PM2,5"], linewidth=0.7,colors='c');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_PM2-5 ICA.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] < "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_PM2-5 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_maz_sum[df_bio_maz_sum["Date"] >= "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/MAZ_PM2-5 ICA_boxplot 2025.png", format="png")
+    
+    # GRAFICOS ICA MDH
+    plt.figure()
+    fig, ax = plt.subplots()
+    ax.set(xlim=("2024-01-01","2025-06-01"), xticks=["2024-01-01", "2024-03-01","2024-06-01","2024-09-01","2025-01-01", "2025-03-01","2025-06-01"]);
+    plt.axvline(x="2024-06-15", color='r', linestyle='--', linewidth=2);
+
+    plt.figure()
+    ax.stackplot(df_bio_mdh_sum["Date"],df_bio_mdh_sum["CO (mg/m3)"], linewidth=0.7);
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/mdh_CO ICA.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] < "2024-06-15"], x = "CO (mg/m3)")  
+    fig.savefig(fname="../img/48-Bizkaia/mdh_CO ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] >= "2024-06-15"], x = "CO (mg/m3)")
+    fig.savefig(fname="../img/48-Bizkaia/mdh_CO ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_mdh_sum["Date"],df_bio_mdh_sum["NO2"], linewidth=1.5,colors='g')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/mdh_NO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] < "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_NO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] >= "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_NO2 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_mdh_sum["Date"],df_bio_mdh_sum["SO2"], linewidth=0.7,colors='y')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/mdh_SO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] < "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_SO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] >= "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_SO2 ICA_boxplot 2025.png", format="png")
+ 
+    plt.figure()
+    ax.stackplot(df_bio_mdh_sum["Date"],df_bio_mdh_sum["PM10"], linewidth=0.7,colors='m');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/mdh_PM10 ICA.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] < "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_PM10 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] >= "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_PM10 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_mdh_sum["Date"],df_bio_mdh_sum["PM2,5"], linewidth=0.7,colors='c');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/mdh_PM2-5 ICA.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] < "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_PM2-5 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_mdh_sum[df_bio_mdh_sum["Date"] >= "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/mdh_PM2-5 ICA_boxplot 2025.png", format="png")
+
+    # GRAFICOS ICA EUR
+    plt.figure()
+    fig, ax = plt.subplots()
+    ax.set(xlim=("2024-01-01","2025-06-01"), xticks=["2024-01-01", "2024-03-01","2024-06-01","2024-09-01","2025-01-01", "2025-03-01","2025-06-01"]);
+    plt.axvline(x="2024-06-15", color='r', linestyle='--', linewidth=2);
+
+    plt.figure()
+    ax.stackplot(df_bio_eur_sum["Date"],df_bio_eur_sum["CO (mg/m3)"], linewidth=0.7);
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/eur_CO ICA.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] < "2024-06-15"], x = "CO (mg/m3)")  
+    fig.savefig(fname="../img/48-Bizkaia/eur_CO ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] >= "2024-06-15"], x = "CO (mg/m3)")
+    fig.savefig(fname="../img/48-Bizkaia/eur_CO ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_eur_sum["Date"],df_bio_eur_sum["NO2"], linewidth=1.5,colors='g')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/eur_NO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] < "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/eur_NO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] >= "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/eur_NO2 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_eur_sum["Date"],df_bio_eur_sum["SO2"], linewidth=0.7,colors='y')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/eur_SO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] < "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/eur_SO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] >= "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/eur_SO2 ICA_boxplot 2025.png", format="png")
+ 
+    plt.figure()
+    ax.stackplot(df_bio_eur_sum["Date"],df_bio_eur_sum["PM10"], linewidth=0.7,colors='m');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/eur_PM10 ICA.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] < "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/eur_PM10 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] >= "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/eur_PM10 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_eur_sum["Date"],df_bio_eur_sum["PM2,5"], linewidth=0.7,colors='c');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/eur_PM2-5 ICA.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] < "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/eur_PM2-5 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_eur_sum[df_bio_eur_sum["Date"] >= "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/eur_PM2-5 ICA_boxplot 2025.png", format="png")
+        
+    # GRAFICOS ICA UM2
+    plt.figure()
+    fig, ax = plt.subplots()
+    ax.set(xlim=("2024-01-01","2025-06-01"), xticks=["2024-01-01", "2024-03-01","2024-06-01","2024-09-01","2025-01-01", "2025-03-01","2025-06-01"]);
+    plt.axvline(x="2024-06-15", color='r', linestyle='--', linewidth=2);
+
+    plt.figure()
+    ax.stackplot(df_bio_um2_sum["Date"],df_bio_um2_sum["CO (mg/m3)"], linewidth=0.7);
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/um2_CO ICA.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] < "2024-06-15"], x = "CO (mg/m3)")  
+    fig.savefig(fname="../img/48-Bizkaia/um2_CO ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] >= "2024-06-15"], x = "CO (mg/m3)")
+    fig.savefig(fname="../img/48-Bizkaia/um2_CO ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_um2_sum["Date"],df_bio_um2_sum["NO2"], linewidth=1.5,colors='g')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/um2_NO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] < "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/um2_NO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] >= "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/um2_NO2 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_um2_sum["Date"],df_bio_um2_sum["SO2"], linewidth=0.7,colors='y')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/um2_SO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] < "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/um2_SO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] >= "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/um2_SO2 ICA_boxplot 2025.png", format="png")
+ 
+    plt.figure()
+    ax.stackplot(df_bio_um2_sum["Date"],df_bio_um2_sum["PM10"], linewidth=0.7,colors='m');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/um2_PM10 ICA.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] < "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/um2_PM10 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] >= "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/um2_PM10 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_um2_sum["Date"],df_bio_um2_sum["PM2,5"], linewidth=0.7,colors='c');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/um2_PM2-5 ICA.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] < "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/um2_PM2-5 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_um2_sum[df_bio_um2_sum["Date"] >= "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/um2_PM2-5 ICA_boxplot 2025.png", format="png")
+        
+    # GRAFICOS ICA BAS    
+    plt.figure()
+    fig, ax = plt.subplots()
+    ax.set(xlim=("2024-01-01","2025-06-01"), xticks=["2024-01-01", "2024-03-01","2024-06-01","2024-09-01","2025-01-01", "2025-03-01","2025-06-01"]);
+    plt.axvline(x="2024-06-15", color='r', linestyle='--', linewidth=2);
+
+    plt.figure()
+    ax.stackplot(df_bio_bas_sum["Date"],df_bio_bas_sum["CO (mg/m3)"], linewidth=0.7);
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/bas_CO ICA.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] < "2024-06-15"], x = "CO (mg/m3)")  
+    fig.savefig(fname="../img/48-Bizkaia/bas_CO ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] >= "2024-06-15"], x = "CO (mg/m3)")
+    fig.savefig(fname="../img/48-Bizkaia/bas_CO ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_bas_sum["Date"],df_bio_bas_sum["NO2"], linewidth=1.5,colors='g')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/bas_NO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] < "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/bas_NO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] >= "2024-06-15"], x = "NO2",color='g')
+    fig.savefig(fname="../img/48-Bizkaia/bas_NO2 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_bas_sum["Date"],df_bio_bas_sum["SO2"], linewidth=0.7,colors='y')
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/bas_SO2 ICA.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] < "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/bas_SO2 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] >= "2024-06-15"], x = "SO2",color='y')
+    fig.savefig(fname="../img/48-Bizkaia/bas_SO2 ICA_boxplot 2025.png", format="png")
+ 
+    plt.figure()
+    ax.stackplot(df_bio_bas_sum["Date"],df_bio_bas_sum["PM10"], linewidth=0.7,colors='m');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/bas_PM10 ICA.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] < "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/bas_PM10 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] >= "2024-06-15"], x = "PM10",color='m')
+    fig.savefig(fname="../img/48-Bizkaia/bas_PM10 ICA_boxplot 2025.png", format="png")
+    
+    plt.figure()
+    ax.stackplot(df_bio_bas_sum["Date"],df_bio_bas_sum["PM2,5"], linewidth=0.7,colors='c');
+    plt.show()
+    fig.savefig(fname="../img/48-Bizkaia/bas_PM2-5 ICA.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] < "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/bas_PM2-5 ICA_boxplot 2024.png", format="png")
+    sns.boxplot(data = df_bio_bas_sum[df_bio_bas_sum["Date"] >= "2024-06-15"], x = "PM2,5",color='c')
+    fig.savefig(fname="../img/48-Bizkaia/bas_PM2-5 ICA_boxplot 2025.png", format="png")
+    
+    return 
